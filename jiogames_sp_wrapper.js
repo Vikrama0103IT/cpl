@@ -39,6 +39,7 @@ function cacheAdMidRoll(adKeyId, source) {
         source ? null : (console.log("Jiogames: cacheAdMidRoll() no source to cacheAd ", source));
         return;
     }
+    window.onAdPrepared(adKeyId);
     if (window.DroidHandler) {
         window.DroidHandler.cacheAd(adKeyId, source);
     }
@@ -62,7 +63,8 @@ function cacheAdRewardedVideo(adKeyId, source) {
         return;
         //c3_callFunction('displayAdPrompt', [0]);
     }
-
+    window.onAdClosed(adKeyId,false,false);
+    window.onAdPrepared(adKeyId);
     if (window.DroidHandler) {
         window.DroidHandler.cacheAdRewarded(adKeyId, source);
 
@@ -86,7 +88,7 @@ function showAdRewardedVideo(adKeyId, source) {
         source ? null : (console.log("Jiogames: showAdRewardedVideo() no source to showAd ", source));
         return;
     }
-
+    window.onAdClosed(adKeyId,true,true);
     if (window.DroidHandler) {
         isRewardUser = false;
         window.DroidHandler.showAdRewarded(adKeyId, source);
